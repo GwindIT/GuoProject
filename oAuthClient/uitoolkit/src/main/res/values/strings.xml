@@ -1,0 +1,23 @@
+<resources >
+    <string name="app_name">UIToolkit</string>
+    <string name="reload">重新加载</string>
+    <string name="login_before_option">请先登录!</string>
+    <string name="loading_failed_tag">请检查您的手机是否联网，点击按钮重新加载</string>
+    <string name="loading_failed">数据加载失败</string>
+    <string name="not_login_info">登陆之后才能访问更多信息...</string>
+
+    <string name="logout">退出登录</string>
+    <string name="not_login">您还未登录</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="account">用户名</string>
+    <string name="password">密码</string>
+    <string name="pin_code">PinCode</string>
+    <string name="bind">绑定登录</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+
+    <string name="bind_device">首次登录?绑定设备</string>
+
+    <string name="server">服务器</string>
+</resources>
