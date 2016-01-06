@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="body_text_1">#de000000</color>
+    <color name="navdrawer_background">#ffffffff</color>
+    <color name="navdrawer_text_color">@color/body_text_1</color>
+    <color name="navdrawer_text_color_selected">@color/colorPrimary</color>
+    <color name="navdrawer_icon_tint">#888</color>
+    <color name="navdrawer_icon_tint_selected">@color/colorPrimary</color>
+
+    <color name="snackbar_text_color">#ff9d9d9c</color>
+    <color name="snackbar_background_color">#ff914300</color>
+    <color name="snackbar_action_color">#ff5a2900</color>
+</resources>

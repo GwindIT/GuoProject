@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/global_background_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/setting_rl_personal_info"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/other_options_selector">
+
+        <com.jin.uitoolkit.widget.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/setting_iv_profile"
+            android:layout_width="@dimen/zone_header_user_profile_height"
+            android:layout_height="@dimen/zone_header_user_profile_height"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            app:border_color="#d2d2d2"
+            app:border_width="2dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/setting_iv_profile"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/setting_ll_has_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/setting_tv_phone"
+                    style="@style/PersonalInfoTextStyle.Setting" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/setting_ll_not_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/PersonalInfoTextStyle.Setting"
+                    android:layout_width="@dimen/me_login_button_width"
+                    android:text="@string/not_login" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            style="@style/PersonalInfoRightImageStyle"
+            android:layout_marginRight="11dp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/setting_btn_whole_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/btn_following"
+        android:text="@string/whole_logout"
+        android:textColor="@android:color/white" />
+</LinearLayout>
