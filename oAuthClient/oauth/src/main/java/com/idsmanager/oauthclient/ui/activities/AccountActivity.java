@@ -4,17 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.idsmanager.oauthclient.ui.fragments.RegisterFragment;
 import com.jin.uitoolkit.activity.RevealBackgroundActivity;
 import com.jin.uitoolkit.util.PixelUtil;
 import com.idsmanager.oauthclient.R;
 import com.idsmanager.oauthclient.ui.fragments.LoginFragment;
 import com.idsmanager.oauthclient.ui.fragments.TokenLoginFragment;
+
 /**
  * Created by 雅麟 on 2015/6/9.
  */
 public class AccountActivity extends RevealBackgroundActivity implements LoginFragment.LoginSuccessCallback {
     public enum OpenType {
-        Login, TokenLogin
+        Login, TokenLogin, Register
     }
 
     private static OpenType current;
@@ -81,6 +83,8 @@ public class AccountActivity extends RevealBackgroundActivity implements LoginFr
             case TokenLogin:
                 TokenLoginFragment.open(R.id.rl_content, getSupportFragmentManager(), null);
                 break;
+            case Register:
+                RegisterFragment.open(R.id.rl_content, getSupportFragmentManager(), null);
         }
     }
 

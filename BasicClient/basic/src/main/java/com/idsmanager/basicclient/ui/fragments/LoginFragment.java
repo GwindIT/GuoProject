@@ -13,6 +13,7 @@ import android.widget.EditText;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.idsmanager.basicclient.utils.StatLog;
 import com.jin.uitoolkit.util.Utils;
 import com.idsmanager.basicclient.R;
 import com.idsmanager.basicclient.module.User;
@@ -38,6 +39,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     EditText etPassword;
     EditText etServer;
     Button btnLogin;
+    Button btRegister;
 
     TextInputLayout tilAccount;
     TextInputLayout tilPassword;
@@ -80,8 +82,12 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         etAccount = (EditText) view.findViewById(R.id.login_et_account);
         etPassword = (EditText) view.findViewById(R.id.login_et_password);
         etServer = (EditText) view.findViewById(R.id.login_et_server);
+
         btnLogin = (Button) view.findViewById(R.id.login_btn_login);
         btnLogin.setOnClickListener(this);
+        btRegister =(Button)view.findViewById(R.id.login_bt_register);
+        btRegister.setOnClickListener(this);
+
         tilServer = (TextInputLayout) view.findViewById(R.id.login_til_server);
         tilAccount = (TextInputLayout) view.findViewById(R.id.login_til_account);
         tilPassword = (TextInputLayout) view.findViewById(R.id.login_til_password);
@@ -123,7 +129,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 break;
             case R.id.login_bt_register:
                 if (getActivity() instanceof AccountActivity) {
-                    ((AccountActivity) getActivity()).addContent(AccountActivity.OpenType.TokenLogin);
+                    ((AccountActivity) getActivity()).addContent(AccountActivity.OpenType.Register);
                 }
         }
     }
@@ -138,7 +144,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         showLoading();
         NetService.storeHttpUrl(getActivity().getApplicationContext(), etServer.getText().toString().trim());
         RequestQueue requestQueue = RequestQueueHelper.getInstance(getActivity().getApplicationContext());
-        IDsManagerPostRequest<UserResponse> request = new IDsManagerPostRequest(NetService.RP_LOGIN_URL, UserResponse.class,
+        final IDsManagerPostRequest<UserResponse> request = new IDsManagerPostRequest(NetService.RP_LOGIN_URL, UserResponse.class,
                 NetService.rpLogin(mUsername, password),
                 new Response.Listener() {
                     @Override
@@ -149,7 +155,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        loginFailed("Login Failed");
+                        loginFailed(error.getMessage());
                     }
                 });
         request.setTag(getRequestTag());

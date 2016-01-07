@@ -13,6 +13,7 @@ import android.widget.EditText;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.idsmanager.ssosublibrary.RpSSOApi;
 import com.jin.uitoolkit.util.Utils;
 import com.idsmanager.oauthclient.R;
 import com.idsmanager.oauthclient.module.User;
@@ -38,6 +39,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     EditText etPassword;
     EditText etServer;
     Button btnLogin;
+    Button btRegister;
 
     TextInputLayout tilAccount;
     TextInputLayout tilPassword;
@@ -82,6 +84,9 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         etServer = (EditText) view.findViewById(R.id.login_et_server);
         btnLogin = (Button) view.findViewById(R.id.login_btn_login);
         btnLogin.setOnClickListener(this);
+        btRegister = (Button)view.findViewById(R.id.login_bt_register);
+        btRegister.setOnClickListener(this);
+
         tilServer = (TextInputLayout) view.findViewById(R.id.login_til_server);
         tilAccount = (TextInputLayout) view.findViewById(R.id.login_til_account);
         tilPassword = (TextInputLayout) view.findViewById(R.id.login_til_password);
@@ -121,6 +126,10 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 Utils.closeInput(getActivity());
                 login();
                 break;
+            case R.id.login_bt_register:
+                if (getActivity() instanceof AccountActivity) {
+                    ((AccountActivity) getActivity()).addContent(AccountActivity.OpenType.Register);
+                }
         }
     }
 
@@ -139,13 +148,15 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 new Response.Listener() {
                     @Override
                     public void onResponse(Object response) {
+                        String facetId = RpSSOApi.getFacetId(getActivity());
+                        System.out.println(facetId);
                         loginSuccess(((UserResponse) response).detail);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        loginFailed("Login Failed");
+                        loginFailed(error.getMessage());
                     }
                 });
         request.setTag(getRequestTag());

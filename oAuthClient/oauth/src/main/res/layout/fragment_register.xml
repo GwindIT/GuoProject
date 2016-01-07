@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape_module"
+    android:background="@drawable/shape_module2"
+    android:clickable="true"
     android:orientation="vertical"
     android:padding="20dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/input_account_login"
+        android:text="@string/register_tv_input_register"
         android:textColor="@android:color/black"
         android:textSize="12sp" />
 
-
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/login_til_server"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_module2">
 
         <EditText
-            android:id="@+id/login_et_server"
+            android:id="@+id/register_et_server"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/server"
+            android:nextFocusDown="@+id/register_et_account"
             android:singleLine="true"
             android:textColor="@android:color/black"
-            android:textSize="16sp"></EditText>
-
+            android:textSize="16sp" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/login_til_account"
+        android:id="@+id/register_til_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_module2">
 
         <EditText
-            android:id="@+id/login_et_account"
+            android:id="@+id/register_et_account"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/account"
+            android:nextFocusDown="@+id/register_et_password"
             android:singleLine="true"
             android:textColor="@android:color/black"
             android:textSize="16sp"></EditText>
@@ -52,17 +53,15 @@
 
     </android.support.design.widget.TextInputLayout>
 
-
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/login_til_password"
+        android:id="@+id/register_til_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_module2">
 
-
         <EditText
-            android:id="@+id/login_et_password"
+            android:id="@+id/register_et_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/password"
@@ -73,47 +72,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/login_btn_login"
+        android:id="@+id/register_btn_register"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_following"
         android:gravity="center"
-        android:text="@string/login"
+        android:text="@string/register"
         android:textColor="@android:color/white"
         android:textSize="16sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/login_tv_request_token"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_weight="1"
-            android:background="#00000000"
-            android:gravity="left"
-            android:padding="10dp"
-            android:text="@string/request_token_login"
-            android:textColor="@color/btn_send_normal"
-            android:textSize="14sp" />
-
-
-        <Button
-            android:id="@+id/login_bt_register"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_weight="1"
-            android:background="#00000000"
-            android:gravity="right"
-            android:padding="10dp"
-            android:text="@string/no_account"
-            android:textColor="@color/btn_send_normal"
-            android:textSize="14sp" />
-
-    </LinearLayout>
 </LinearLayout>

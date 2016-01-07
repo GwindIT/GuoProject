@@ -23,11 +23,14 @@ public class NetService {
     public static String RP_LOGIN_URL;
     private static final String RP_TOKEN_LOGIN_SUB = "/RPServer/api/rp/oauth/login";
     public static String RP_TOKEN_LOGIN_URL;
+    private static final String REGISTER_URL_SUB = "/RPServer/public/oauth/user/register";
 
+    public static String REGISTER_URL;
     private static void init(Context context) {
         getHttpUrl(context);
         RP_LOGIN_URL = HTTP_URL + RP_LOGIN_SUB;
         RP_TOKEN_LOGIN_URL = HTTP_URL + RP_TOKEN_LOGIN_SUB;
+        REGISTER_URL = HTTP_URL + REGISTER_URL_SUB;
     }
 
     public static String getHttpUrl(Context context) {
@@ -86,6 +89,12 @@ public class NetService {
     }
 
     public static Map<String, String> rpLogin(String username, String password) {
+        ArrayMap params = new ArrayMap();
+        params.put("username", username);
+        params.put("password", password);
+        return params;
+    }
+    public static Map<String, String> register(String username, String password) {
         ArrayMap params = new ArrayMap();
         params.put("username", username);
         params.put("password", password);

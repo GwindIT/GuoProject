@@ -1,4 +1,4 @@
-package com.idsmanager.basicclient.ui.fragments;
+package com.idsmanager.oauthclient.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -12,19 +12,17 @@ import android.widget.EditText;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.idsmanager.basicclient.R;
-import com.idsmanager.basicclient.module.RegisterResult;
-import com.idsmanager.basicclient.module.User;
-import com.idsmanager.basicclient.net.ErrorNumberConstants;
-import com.idsmanager.basicclient.net.IDsManagerPostRequest;
-import com.idsmanager.basicclient.net.NetService;
-import com.idsmanager.basicclient.net.RequestQueueHelper;
-import com.idsmanager.basicclient.net.response.RegisterResponse;
-import com.idsmanager.basicclient.net.response.UserResponse;
-import com.idsmanager.basicclient.utils.SnackBarUtil;
-import com.jin.uitoolkit.util.Utils;
 
-import org.w3c.dom.Text;
+import com.idsmanager.oauthclient.R;
+import com.idsmanager.oauthclient.module.RegisterResult;
+import com.idsmanager.oauthclient.module.User;
+import com.idsmanager.oauthclient.net.IDsManagerPostRequest;
+import com.idsmanager.oauthclient.net.NetService;
+import com.idsmanager.oauthclient.net.RequestQueueHelper;
+import com.idsmanager.oauthclient.net.response.RegisterResponse;
+import com.idsmanager.oauthclient.net.response.UserResponse;
+import com.idsmanager.oauthclient.utils.SnackBarUtil;
+import com.jin.uitoolkit.util.Utils;
 
 /**
  * Created by wind on 2016/1/5.

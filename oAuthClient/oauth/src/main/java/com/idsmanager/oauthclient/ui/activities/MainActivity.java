@@ -18,6 +18,7 @@ import com.idsmanager.oauthclient.net.NetService;
 import com.idsmanager.oauthclient.net.RequestQueueHelper;
 import com.idsmanager.oauthclient.net.response.UserResponse;
 import com.idsmanager.oauthclient.utils.SnackBarUtil;
+import com.idsmanager.ssosublibrary.RpSSOApi;
 
 public class MainActivity extends BaseLoadActivity
         implements View.OnClickListener {
@@ -26,20 +27,9 @@ public class MainActivity extends BaseLoadActivity
 
     private void initData() {
         if (User.isLogin(getApplicationContext())) {
-//            TextView localTextView1 = this.tvLoginStat;
-//            String str1 = getString(R.string.welcome1);
-//            Object[] arrayOfObject1 = new Object[1];
-//            arrayOfObject1[0] = User.getUserAccount(getApplicationContext());
-//            localTextView1.setText(String.format(str1, arrayOfObject1));
-//            TextView localTextView2 = this.tvLoginStat;
-//            StringBuilder localStringBuilder = new StringBuilder().append("\n");
-//            String str2 = getString(R.string.welcome2);
-//            Object[] arrayOfObject2 = new Object[1];
-//            arrayOfObject2[0] = Integer.valueOf(User.getLoginTimes(getApplicationContext()));
-//            localTextView2.append(String.format(str2, arrayOfObject2));
             int loginTimes = User.getLoginTimes(this);
             String username = User.getUserAccount(this);
-            tvLoginStat.setText("欢迎您："+username+". 您已经登录"+loginTimes+"次");
+            tvLoginStat.setText("欢迎您：" + username + ". 您已经登录" + loginTimes + "次");
             return;
         }
         this.tvLoginStat.setText(getString(R.string.no_login));
@@ -81,12 +71,12 @@ public class MainActivity extends BaseLoadActivity
                 new Response.Listener() {
                     public void onResponse(Object paramObject) {
                         User user = ((UserResponse) paramObject).detail;
-                      loginSuccess(user);
+                        loginSuccess(user);
                     }
                 },
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError paramVolleyError) {
-                       loginFailed("Sorry,Login Failed");
+                        loginFailed("Sorry,Login Failed");
                     }
                 });
         IDsManagerGetRequest.setTag(TAG);
@@ -109,14 +99,11 @@ public class MainActivity extends BaseLoadActivity
         String username = User.getUserAccount(this);
         if (!TextUtils.isEmpty(username)) {
             initData();
-            tvLoginStat.setText("欢迎您："+username+". 您已经登录"+loginTimes+"次");
-//            tvLoginStat.setText(String.format(getString(R.string.welcome1), new Object[]{str1}));
-//            TextView tvLoginStat = this.tvLoginStat;
-//            StringBuilder localStringBuilder = new StringBuilder().append("\n");
-//            String str2 = getString(R.string.welcome2);
-//            tvLoginStat.append(String.format(str2, loginTimes));
+            tvLoginStat.setText("欢迎您：" + username + ". 您已经登录" + loginTimes + "次");
             return;
         }
+        String facetId = RpSSOApi.getFacetId(this);
+        System.out.println(facetId);
         this.tvLoginStat.setText(getString(R.string.no_login));
     }
 
