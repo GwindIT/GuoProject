@@ -4,10 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.idsmanager.ssosublibrary.constants.Constants;
 import com.idsmanager.basicclient.module.User;
 import com.idsmanager.basicclient.ui.activities.MainActivity;
 import com.idsmanager.basicclient.utils.StatLog;
+import com.idsmanager.ssosublibrary.interfaces.Constants;
 
 /**
  * Created by YaLin on 2015/11/24.

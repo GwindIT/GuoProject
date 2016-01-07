@@ -67,6 +67,7 @@
             android:textSize="16sp" />
         <Button
             android:id="@+id/token_login_btn_confirm_login"
+            android:visibility="gone"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="40dp"
