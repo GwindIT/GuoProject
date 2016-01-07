@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 23
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+//TODO: local maven deployment
+
+dependencies {
+    compile 'com.google.android.gms:play-services-location:8.1.0'
+    compile 'io.reactivex:rxjava:1.0.14'
+}
+
+// Comment this to deploy to local maven repository
+apply from: '../maven_push.gradle'
+
+
+//TODO: clean up
+//This is for local maven deployment
+
+//apply plugin: 'maven'
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            repository url: 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+//        }
+//    }
+//}
+//task install(dependsOn: uploadArchives)
