@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/BDMapService_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.91"
+        android:focusable="true"
+        android:clickable="true"
+        android:src="@drawable/ylc_service" />
+
+    <ImageView
+        android:id="@+id/BDMAPLocation_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.91"
+        android:clickable="true"
+        android:src="@drawable/ylc_location" />
+
+    <ImageView
+        android:id="@+id/BDSet_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.91"
+        android:clickable="true"
+        android:src="@drawable/ylc_set" />
+
+</LinearLayout>

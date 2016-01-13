@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">yourlifecircle</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="mainactivityname">生活轨迹</string>
+    <string name="user_login">登录</string>
+    <string name="friends_list">好友</string>
+    <string name="userlogin_tip">登录后，可享更多功能</string>
+    <string name="title_activity_ylc__login">YLC_Login</string>
+    <string name="user_Account">用户名</string>
+    <string name="user_Password">密    码</string>
+    <string name="userLogin_Confirm">登   录</string>
+    <string name="third_Login">第三方登录</string>
+    <string name="title_activity_ylc__system_set">YLC_System_set</string>
+    <string name="title_activity_ylc__auth">YLC_AuthActivity</string>
+    <string name="qzone">不知道哦做什么用的</string>
+    <string name="title_activity_ylc__locations">自我定位</string>
+    <string name="title_activity_ylc__poisearch">YLC_POISEARCH</string>
+    <string name="title_activity_ylc__roadplan">YLC_ROADPLAN</string>
+    <string name="title_activity_ylc__life_circle">YLC_LifeCircle</string>
+    <string name="title_activity_ylc__user__fiends">YLC_USER_FIENDS</string>
+    <string name="title_activity_ylc__geocoding">YLC_Geocoding</string>
+    <string name="title_activity_ylc__self_location">YLC_SelfLocation</string>
+    <string name="title_activity_location_overlay_demo_test">LocationOverlayDemoTest</string>
+    <string name="textView_user_sendfeedback">感谢你发送的建议，你的建议是对我们最大的支持！</string>
+    <string name="button_user_sendfeedback">提交意见</string>
+    <string name="button_user_feedback">反馈意见</string>
+
+    <string-array name="ylc_string_service">
+        <item>POI检索</item>
+        <item>路径规划</item>
+        <item>地理编码</item>
+        <item>公交查询</item>
+        <item>活动轨迹</item>
+    </string-array>
+    <string-array name="ylc_string_setting">
+        <item>系统设置</item>
+        <item>意见反馈</item>
+        <item>使用说明</item>
+        <item>告诉好友</item>
+        <item>关于我们</item>
+    </string-array>
+    <string-array name="ylc_system_set">
+        <item>实时定位</item>
+        <item>每5分钟一次</item>
+        <item>每10分钟一次</item>
+        <item>每30分钟一次</item>
+        <item>每1小时一次</item>
+    </string-array>
+    <string-array name="ylc_userintructions_problem">
+        <item>1、适用机型</item>
+        <item>2、登录说明</item>
+        <item>3、软件特色</item>
+        <item>4、定位方式</item>
+    </string-array>
+    <string-array name="ylc_userintructions_explain">
+        <item>android2.3以上，最好是小米2s（主要本软件是在小米2s的基础上开发的，没有验证过太多的机型，所以要想想过更好，建议用小米2s）</item>
+        <item>本软件采用地方登录，目前为止支持qq登录！登录后用户类型分两种，如果你相应的qq号，开通了微博账号，那么你就是微博用户，否则则是qq用户</item>
+        <item>软件的特色之处就是除了，知道朋友的位置和活动轨迹之外，还提供了集成了地图的很多功能，如：POI检索、公交线路查询等</item>
+        <item>本软件定位采用混合定位，即基站定位，GPS定位，wifi定位，使定位更加的准确！</item>
+    </string-array>
+    <string-array name="ylc_aboutus">
+        <item>1、本软件免费使用，绝不收取任何费用</item>
+        <item>2、如果有哪位软件开发者，需要源代码，请与我联系（免费提供，供有需要者学习参考，下边有我的联系方式）</item>
+        <item>3、电话号码：18841659558</item>
+        <item>4、邮箱cyansoftorg@gmail.com</item>
+        <item>5、感谢大家使用生活轨迹</item>
+    </string-array>
+
+    <string name="title_activity_ylc__set">应用设置</string>
+    <string name="title_activity_ylc__set__system">定位时间设置</string>
+    <string name="title_activity_ylc__user__feedback">用户意见反馈</string>
+    <string name="title_activity_ylc__user__send_feedback">添加意见</string>
+    <string name="title_activity_ylc__poi__search">POI检索功能</string>
+    <string name="title_activity_ylc__route_plan">路径规划</string>
+    <string name="title_activity_ylc__custom_route_overlay">用户自定义路线</string>
+    <string name="title_activity_ylc__geo_coder">地理编码与反编码</string>
+    <string name="title_activity_ylc__bus_line">公交线路查询</string>
+    <string name="title_activity_ylc__your_life_circle">生活轨迹</string>
+    <string name="title_activity_ylc__use_instructions">软件使用说明</string>
+    <string name="title_activity_ylc__tell_friends">让好友知道你在使用生活轨迹</string>
+    <string name="title_activity_ylc__about_us">关于我们</string>
+    <string name="title_activity_ylc__um__share">YLC_UM_Share</string>
+
+</resources>
