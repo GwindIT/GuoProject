@@ -10,4 +10,31 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:clickable="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_tile" />
+
+        <Button
+            android:id="@+id/bt_hide"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/hide_tile" />
+
+        <CheckBox
+            android:id="@+id/cb_hide"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:checked="false" />
+    </LinearLayout>
 </RelativeLayout>

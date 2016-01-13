@@ -1,8 +1,17 @@
 package com.idsmanager.parkdemo.activity;
 
+import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -12,18 +21,33 @@ import com.baidu.location.Poi;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.FileTileProvider;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.Tile;
+import com.baidu.mapapi.map.TileOverlay;
+import com.baidu.mapapi.map.TileOverlayOptions;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.LatLngBounds;
 import com.idsmanager.parkdemo.R;
 
+import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    MapView mMapView = null;
-    BaiduMap mMap;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+    private MapView mMapView = null;
+    private BaiduMap mMap;
+    private Button addTile;
+    private Button hideTile;
+    private CheckBox isHide;
+    private TileOverlay tileOverlay;
+    private FileTileProvider tileProvider;
+    private static final int MAX_LEVEL = 20;
+    private static final int MIN_LEVEL = 3;
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
 
@@ -65,13 +89,29 @@ public class MainActivity extends AppCompatActivity {
         mLocationClient.stop();
     }
 
+    /**
+     * 初始化界面
+     */
     private void initView() {
         mMapView = (MapView) findViewById(R.id.bmapView);
         mMap = mMapView.getMap();
-        MapStatusUpdate zoomUpdate = MapStatusUpdateFactory.zoomTo(20);// 默认是12
+        mMap.setBuildingsEnabled(true);
+        addTile = (Button) findViewById(R.id.bt_add);
+        hideTile = (Button)findViewById(R.id.bt_hide);
+        isHide = (CheckBox) findViewById(R.id.cb_hide);
+
+
+        addTile.setOnClickListener(this);
+        hideTile.setOnClickListener(this);
+        isHide.setOnCheckedChangeListener(this);
+
+        MapStatusUpdate zoomUpdate = MapStatusUpdateFactory.zoomTo(16.0f);// 默认是12
         mMap.setMapStatus(zoomUpdate);
     }
 
+    /**
+     * 定位方法
+     */
     private void locate() {
         initLocation();
         show();
@@ -104,11 +144,116 @@ public class MainActivity extends AppCompatActivity {
     private void show() {
         BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.icon_geo);
         MyLocationConfiguration config = new MyLocationConfiguration(
-                com.baidu.mapapi.map.MyLocationConfiguration.LocationMode.FOLLOWING,
-                true, icon);
+                com.baidu.mapapi.map.MyLocationConfiguration.LocationMode.NORMAL,
+                false, icon);
         mMap.setMyLocationConfigeration(config);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bt_add:
+                addTileOverlay();
+                break;
+            case R.id.bt_hide:
+                startActivity(new Intent(this,MainActivity.class));
+                MainActivity.this.overridePendingTransition(R.anim.activity_open,R.anim.activity_close);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 添加瓦片
+     */
+    private void addTileOverlay() {
+
+        if (tileOverlay != null && mMap != null) {
+            tileOverlay.removeTileOverlay();
+        }
+        tileProvider = new FileTileProvider() {
+            @Override
+            public Tile getTile(int x, int y, int z) {
+                // 根据地图某一状态下x、y、z加载指定的瓦片图
+                String filedir = "LocalTileImage/" + z + "/" + z + "_" + x + "_" + y + ".jpg";
+                Bitmap bm = getFromAssets(filedir);
+                if (bm == null) {
+                    return null;
+                }
+                // 瓦片图尺寸必须满足256 * 256
+                Tile offlineTile = new Tile(bm.getWidth(), bm.getHeight(), toRawData(bm));
+                bm.recycle();
+                return offlineTile;
+            }
+
+            @Override
+            public int getMaxDisLevel() {
+                return MAX_LEVEL;
+            }
+
+            @Override
+            public int getMinDisLevel() {
+                return MIN_LEVEL;
+            }
+        };
+        TileOverlayOptions options = new TileOverlayOptions();
+        // 构造显示瓦片图范围，当前为世界范围
+        LatLng northeast = new LatLng(80, 180);
+        LatLng southwest = new LatLng(-80, -180);
+        // 设置离线瓦片图属性option
+        options.tileProvider(tileProvider).setPositionFromBounds(new LatLngBounds.Builder().include(northeast).include(southwest).build());
+        // 通过option指定相关属性，向地图添加离线瓦片图对象
+        tileOverlay = mMap.addTileLayer(options);
+    }
+
+    /**
+     * 根据url和一定的规则获得图片
+     *
+     * @param fileName
+     * @return
+     */
+    private Bitmap getFromAssets(String fileName) {
+        AssetManager am = this.getAssets();
+        InputStream is = null;
+        Bitmap bm;
+        try {
+            is = am.open(fileName);
+            bm = BitmapFactory.decodeStream(is);
+            return bm;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 返回byte数据
+     *
+     * @param bitmap
+     * @return
+     */
+    byte[] toRawData(Bitmap bitmap) {
+        ByteBuffer buffer = ByteBuffer.allocate(bitmap.getWidth()
+                * bitmap.getHeight() * 4);
+        bitmap.copyPixelsToBuffer(buffer);
+        byte[] data = buffer.array();
+        buffer.clear();
+        return data;
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            mMap.showMapPoi(false);
+        } else {
+            mMap.showMapPoi(true);
+        }
+    }
+
+    /**
+     * 定位位置的监听类
+     */
     class MyLocationListener implements BDLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -168,7 +313,6 @@ public class MainActivity extends AppCompatActivity {
                     sb.append("\npoi= : ");
                     sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
                 }
-
             }
             MyLocationData data = new MyLocationData.Builder()
                     .latitude(location.getLatitude())
