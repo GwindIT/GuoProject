@@ -8,10 +8,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMap = mMapView.getMap();
         mMap.setBuildingsEnabled(true);
         addTile = (Button) findViewById(R.id.bt_add);
-        hideTile = (Button)findViewById(R.id.bt_hide);
+        hideTile = (Button) findViewById(R.id.bt_hide);
         isHide = (CheckBox) findViewById(R.id.cb_hide);
 
 
@@ -156,8 +156,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 addTileOverlay();
                 break;
             case R.id.bt_hide:
-                startActivity(new Intent(this,MainActivity.class));
-                MainActivity.this.overridePendingTransition(R.anim.activity_open,R.anim.activity_close);
+                startActivity(new Intent(this, MainActivity.class));
+                MainActivity.this.overridePendingTransition(R.anim.activity_open, R.anim.activity_close);
                 break;
             default:
                 break;
@@ -319,6 +319,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .longitude(location.getLongitude())
                     .direction(location.getDirection())
                     .build();
+
             mMap.setMyLocationEnabled(true);
 //			设置定位数据, 只有先允许定位图层后设置数据才会生效
             mMap.setMyLocationData(data);// 显示定位数据
