@@ -42,16 +42,18 @@ import java.nio.ByteBuffer;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BaiduMap.OnMapLongClickListener {
     private static boolean first;
+    private static final int MAX_LEVEL = 21;
+    private static final int MIN_LEVEL = 3;
+
     private MapView mMapView = null;
     private BaiduMap mMap;
     private TileOverlay tileOverlay;
-    private FileTileProvider tileProvider;
-    private static final int MAX_LEVEL = 20;
-    private static final int MIN_LEVEL = 3;
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
+    FileTileProvider tileProvider;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mLocationClient = new LocationClient(getApplicationContext());//声明
         mLocationClient.registerLocationListener(myListener);    //注册监听函数
+        first = true;
         initView();
         locate();
     }
@@ -66,7 +69,6 @@ public class MainActivity extends AppCompatActivity
     private void initView() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         mMapView = (MapView) findViewById(R.id.bmapView);
         mMap = mMapView.getMap();
         mMap.setBuildingsEnabled(true);
@@ -82,7 +85,6 @@ public class MainActivity extends AppCompatActivity
         MapStatusUpdate zoomUpdate = MapStatusUpdateFactory.zoomTo(16.0f);// 默认是12
         mMap.setMapStatus(zoomUpdate);
 
-        first = true;
     }
 
     private void locate() {
@@ -115,11 +117,12 @@ public class MainActivity extends AppCompatActivity
      * 设置显示定位位置的属性
      */
     private void show() {
-        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.icon_geo);
+        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.location);
         MyLocationConfiguration config = new MyLocationConfiguration(
-                com.baidu.mapapi.map.MyLocationConfiguration.LocationMode.NORMAL,
+                MyLocationConfiguration.LocationMode.NORMAL,
                 true, icon);
         mMap.setMyLocationConfigeration(config);
+
     }
 
     @Override
@@ -139,15 +142,15 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         //在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
-        mMapView.onResume();
+        // mMapView.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         //在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
-        mMapView.onPause();
-        mLocationClient.stop();
+        //mMapView.onPause();
+        //mLocationClient.stop();
     }
 
     @Override
@@ -179,14 +182,27 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+        MapStatus mapStatus = mMap.getMapStatus();
+        float zoom = mapStatus.zoom;
         switch (item.getItemId()) {
             case R.id.nav_add:
                 addTileOverlay();
+                mMap.showMapPoi(false);
+                MapStatusUpdate zoomUpdate = MapStatusUpdateFactory.zoomTo(zoom);// 默认是12
+                mMap.setMapStatus(zoomUpdate);
+                item.setChecked(true);
                 break;
             case R.id.nav_hide:
                 startActivity(new Intent(this, MainActivity.class));
                 MainActivity.this.overridePendingTransition(0, 0);
-                break;
+                if (tileOverlay != null) {
+                    tileOverlay.removeTileOverlay();
+                }
+                mMap.showMapPoi(true);
+                MapStatusUpdate zoomUpdate2 = MapStatusUpdateFactory.zoomTo(zoom);// 默认是12
+                mMap.setMapStatus(zoomUpdate2);
+                item.setChecked(true);
             default:
                 break;
         }
@@ -208,6 +224,8 @@ public class MainActivity extends AppCompatActivity
             public Tile getTile(int x, int y, int z) {
                 // 根据地图某一状态下x、y、z加载指定的瓦片图
                 String filedir = "LocalTileImage/" + z + "/" + z + "_" + x + "_" + y + ".jpg";
+                String latLng = "x:" + x + ",y" + y + ",z" + z;
+                Log.i("BaiduLocationApiDem", latLng);
                 Bitmap bm = getFromAssets(filedir);
                 if (bm == null) {
                     return null;
@@ -239,10 +257,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * 根据url和一定的规则获得图片
-     *
-     * @param fileName
-     * @return
+     * get assets
      */
     private Bitmap getFromAssets(String fileName) {
         AssetManager am = this.getAssets();
@@ -259,7 +274,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * 返回byte数据
+     * return bytes[]
      *
      * @param bitmap
      * @return
@@ -274,11 +289,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
+     * 长按的监听
+     *
+     * @param latLng
+     */
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+
+    }
+
+    /**
      * 定位位置的监听类
      */
     class MyLocationListener implements BDLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location) {
+            //第一次进入时显示为当前位置
             if (first) {
                 LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                 MapStatus mapStatus = new MapStatus.Builder().target(latLng).zoom(16).build();
