@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;

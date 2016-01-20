@@ -3,4 +3,5 @@
     <string name="add_tile">添加</string>
     <string name="hide_tile">隐藏</string>
     <string name="is_hide">是否隐藏</string>
+    <string name="action_settings">Settings</string>
 </resources>
