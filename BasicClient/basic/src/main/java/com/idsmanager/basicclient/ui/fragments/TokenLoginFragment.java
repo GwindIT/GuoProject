@@ -132,16 +132,6 @@ public class TokenLoginFragment extends BaseFragment implements View.OnClickList
         }
         NetService.storeHttpUrl(getActivity().getApplicationContext(), this.etServer.getText().toString().trim());
         RpSSOApi.requestTokenShareData(getActivity(),username,this);
-//        String appName = getString(R.string.app_name);
-//        if (silence) {
-//            if (!RpSSOApi.requestToken(getActivity(), username, appName, this)) {
-//                ToastUtil.showToast(getActivity(), R.string.no_app_installed);
-//            }
-//        } else {
-//            if (!RpSSOApi.requestTokenWithConfirm(getActivity(), username, appName, this)) {
-//                ToastUtil.showToast(getActivity(), R.string.no_app_installed);
-//            }
-//        }
     }
 
     @Override

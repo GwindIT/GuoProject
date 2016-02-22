@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="15dp"
+        android:background="@color/gray2" />
+
+    <LinearLayout style="@style/ShowLinearStyle">
+
+        <TextView
+            style="@style/InspectionStyle"
+            android:text="@string/date" />
+
+        <TextView
+            android:id="@+id/tv_item_date"
+            style="@style/InspectionStyle"
+            android:text="@string/show_date" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="15dp"
+        android:background="@color/gray2" />
+
+    <LinearLayout style="@style/ShowLinearStyle">
+
+        <TextView
+            style="@style/InspectionStyle"
+            android:text="@string/problem_type" />
+
+        <TextView
+            android:id="@+id/tv_item_type"
+            style="@style/InspectionStyle"
+            android:text="@string/show_type" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="15dp"
+        android:background="@color/gray2" />
+
+    <LinearLayout style="@style/ShowLinearStyle">
+
+        <TextView
+            style="@style/InspectionStyle"
+            android:text="@string/detail" />
+
+        <TextView
+            android:id="@+id/tv_item_detail"
+            style="@style/InspectionStyle"
+            android:text="@string/show__detail" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="3px"
+        android:layout_marginBottom="2dp"
+        android:background="@color/gray2" />
+</LinearLayout>

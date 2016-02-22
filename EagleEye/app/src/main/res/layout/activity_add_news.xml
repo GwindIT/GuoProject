@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_news"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.AddNewsActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/activity_main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_module2"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dimen_global_padding"
+                android:paddingRight="@dimen/dimen_global_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/new_mark_item_height"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/name" />
+
+                    <TextView
+                        style="@style/NewMarkTextStyle"
+                        android:text="@string/tv_name" />
+
+                    <EditText
+                        android:id="@+id/et_add_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/gray2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/new_mark_item_height"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/type" />
+
+                    <TextView
+                        style="@style/NewMarkTextStyle"
+                        android:text="@string/tv_type" />
+
+                    <RadioGroup
+                        android:id="@+id/rg_add_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioGroup_button1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/tv_show_type"
+                            android:textColor="@color/fontColor" />
+
+                        <RadioButton
+                            android:id="@+id/radioGroup_button2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/flower"
+                            android:textColor="@color/fontColor" />
+
+                        <RadioButton
+                            android:id="@+id/radioGroup_button3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/grass"
+                            android:textColor="@color/fontColor" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/gray2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/new_mark_item_height"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/weizhi" />
+
+                    <TextView
+                        style="@style/NewMarkTextStyle"
+                        android:text="@string/tv_position" />
+
+                    <EditText
+                        android:id="@+id/et_add_position"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2px"
+                    android:background="@color/gray2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/new_mark_item_height"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/gps" />
+
+                    <TextView
+                        android:id="@+id/longitude"
+                        style="@style/NewMarkTextStyle"
+                        android:singleLine="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/new_mark_item_height"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/gps" />
+
+                    <TextView
+                        android:id="@+id/latitude"
+                        style="@style/NewMarkTextStyle"
+                        android:singleLine="true" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_images"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_module2"
+                android:paddingLeft="@dimen/dimen_global_padding"
+                android:paddingRight="@dimen/dimen_global_padding" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/tips"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/bt_create"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/dimen_global_padding"
+                android:layout_marginRight="@dimen/dimen_global_padding"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_following"
+                android:text="@string/create_news"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <ViewStub
+            android:id="@+id/vs_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/dialog_content_loading" />
+    </FrameLayout>
+</LinearLayout>

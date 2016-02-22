@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">EagleEye</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="add_tile">园林绿化图</string>
+    <string name="hide_tile">城市平面图</string>
+    <string name="title_activity_add_news">AddNewsActivity</string>
+    <string name="tree">我是一颗大树！！</string>
+    <string name="river">我是一条河！！</string>
+    <string name="latitude">经度:</string>
+    <string name="longitude">纬度:</string>
+    <string name="input">请输入内容：</string>
+    <string name="submit_success">提交成功！</string>
+    <string name="submit_failed">提交信息失败，请检查网络后重试（演示需要,仍然会创建标注点）！</string>
+    <string name="create_news">创建信息点</string>
+    <string name="news_type">信息点类型:</string>
+    <string name="wait_locate">定位未完成，请稍后！</string>
+    <string name="get_photo">拍摄图片</string>
+    <string name="demo_show">平面设计图</string>
+    <string name="my">我的位置</string>
+    <string name="locateKr">中阳大厦</string>
+    <string name="show_name">法国梧桐（树）</string>
+    <string name="show_position">位于东区A/1区域</string>
+    <string name="show_add">添加</string>
+    <string name="tv_name">名称 :</string>
+    <string name="tv_show_name">法国梧桐</string>
+    <string name="tv_type">类型 :</string>
+    <string name="tv_show_type">树</string>
+    <string name="tv_position">位置 :</string>
+    <string name="tv_show_position">位于东区A/1区域</string>
+    <string name="tips">(友情提示:最多添加8张图片,长按图片可以删除已添加图片)</string>
+    <string name="flower">花</string>
+    <string name="grass">草</string>
+    <string name="tileoverlay_online_urlhint">放入图片URL，点击在线</string>
+    <string name="show_latitude">精度 :</string>
+    <string name="show_longitude">纬度 :</string>
+    <string name="search_text">输入您要搜索的内容</string>
+    <string name="string_longitude">经度 :%s</string>
+    <string name="string_latitude">纬度 :%s</string>
+    <string name="name_or_location_is_empty">名称或位置不能为空</string>
+
+    <string name="server_error">服务器访问出错,请稍后访问!</string>
+    <string name="net_word_error_info">网络不给力,请检查您的网络!</string>
+    <string name="unknown_error">未知错误,请重试!</string>
+
+    <string name="reload">重新加载</string>
+    <string name="loading_failed_tag">请检查您的手机是否联网，点击按钮重新加载</string>
+    <string name="loading_failed">数据加载失败</string>
+    <string name="inspection">巡检</string>
+    <string name="gps">精度 :</string>
+    <string name="gps2">纬度 :</string>
+    <string name="problem">巡检问题</string>
+    <string name="date">日期 :</string>
+    <string name="show_date">2016.02.14</string>
+    <string name="problem_type">类型 :</string>
+    <string name="show_type">报修</string>
+    <string name="detail">详情 :</string>
+    <string name="show__detail">该浇水了</string>
+    <string name="put_in">请选择正确的地址</string>
+    <string name="add_problem_inspection">添加巡检问题</string>
+    <string name="choose">图纸分类</string>
+    <string name="set_ip">设置IP</string>
+    <string name="others">其他</string>
+</resources>

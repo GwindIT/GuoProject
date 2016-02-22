@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_tv_header"
+    android:layout_width="@dimen/app_list_item_height"
+    android:layout_height="50dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="20dp"
+    android:background="@drawable/options_selector"
+    android:gravity="center"
+    android:scaleType="centerInside"
+    android:text="@string/choose"
+    android:textColor="@color/textName"
+    android:textSize="22dp" />
